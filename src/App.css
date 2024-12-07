@@ -1,0 +1,10 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.account{
+    height: 530px;
+    display: flex;
+    flex-direction: column;
+}
