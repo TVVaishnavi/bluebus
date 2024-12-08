@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { UseBusList } from '../../hooks/buscontrolprovider'
 
-function Createbus() {
-
+const Editbus = () => {
     const [busNumber,setbusNumber]=useState('')
     const [totalSeat,settotalSeat]=useState(Number)
     const [availableSeat,setavailableSeat]=useState([])
@@ -14,14 +13,14 @@ function Createbus() {
     const [departureTime,setdepartureTime]=useState('')
     const [date,setdate]=useState('')
 
-    const {CreateBus}=UseBusList()
+    const {Editbus,editbus}=UseBusList()
 
-    const handlecreatebus=()=>{
+    const handleeditbus=()=>{
        const obj={
         busNumber,totalSeat,availableSeat,inAC,arrival,departure,stoppings,arriveTime,departureTime,date
        } 
-       console.log(obj)             
-         CreateBus(obj)
+       //console.log(obj)             
+       Editbus(obj)
     }
     const formarray=(num)=>{
        let arr=[]
@@ -31,9 +30,21 @@ function Createbus() {
        return arr
     }
 
+    useEffect(()=>{
+        setbusNumber(editbus.busNumber)
+        settotalSeat(editbus.totalSeat)
+        setavailableSeat(editbus.availableSeat)
+        setinAc(editbus.inAC)
+        setarrival(editbus.arrival)
+        setdepature(editbus.departure)
+        setstoppings(editbus.stoppings)
+        setarriveTime(editbus.arriveTime)
+        setdepartureTime(editbus.departureTime)
+        setdate(editbus.date)
+    },editbus)
   return (
     <div>
-        <div>
+      <div>
             <label>busNumber:</label>
             <input name='busNumber' type='text' placeholder='busNumber' value={busNumber} onChange={(e)=>setbusNumber(e.target.value)}></input>
         </div>
@@ -70,9 +81,9 @@ function Createbus() {
             <label>date: </label>
             <input  name = 'date' type='date' placeholder='date' value={date} onChange={(e)=>setdate(e.target.value)}></input>
         </div>  
-        <div><button onClick={()=>handlecreatebus()}>Create</button></div>    
+        <div><button onClick={()=>handleeditbus()}>save</button></div>
     </div>
   )
 }
 
-export default Createbus
+export default Editbus

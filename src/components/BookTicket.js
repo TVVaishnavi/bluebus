@@ -6,7 +6,9 @@ import { IoMdSwap } from "react-icons/io";
 function BookTicket() {
     const [seatCount, setSeatCount]=useState(1)
     const [row, setrow]=useState([{name:'',age:'',gender:''}])
-
+    const {handlebuslist}=UseBusList()
+   const {num}=useParams()
+   const detail=handlebuslist(num)
     const addrow=()=>{
         const newrow={name:'',age:'',gender:''}
         setrow([...row,newrow])
@@ -23,9 +25,18 @@ function BookTicket() {
         setrow(data)
     }
 
-    const {handlebuslist}=UseBusList()
-   const {num}=useParams()
-   const detail=handlebuslist(num)
+    const handlebook=()=>{
+        const data={
+            busNumber:detail.busNumber,
+    seatcount:seatCount,
+    arrival:detail.arrival,
+    departure:detail.departure,
+    bookingdate:detail.data,
+    travellerdetails:row
+        }
+    }
+
+
   return (
     <div className='ticket'>
 
@@ -83,6 +94,7 @@ function BookTicket() {
                 )
                 })}
             </table>
+            <button >BookTicket</button>
         </div></>:<p>ticket is loading</p>}
         
       

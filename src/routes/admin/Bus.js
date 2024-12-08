@@ -1,21 +1,27 @@
 import React, { useState } from 'react'
 import { UseBusList } from '../../hooks/buscontrolprovider'
+import { Navigate, useNavigate } from 'react-router-dom'
 
 function Bus() {
-  const {bus}=UseBusList()
+  const {bus,deletebus,seteditbus}=UseBusList()
+  const Navigate=useNavigate()
+  console.log(bus)
   return (
     <div> 
       <div>
-        
+        <button onClick={()=>Navigate('/dashboard/createBus')}>Create</button>
       </div>
       {bus.length? bus.map((input, index)=>{
         return(
           <div key={index}>
-            <div><button>edit</button><button>delete</button></div>
+            <div><button onClick={()=>{
+                 seteditbus(input)
+                 Navigate('/dashboard/editbus')
+            }}>edit</button><button onClick={()=>{deletebus(input._id)}}>delete</button></div>
             <div>{input.busNumber}</div>
             <div>{input.totalSeat}</div>
-            <div>{input.avaiableSeat.length}</div>
-            <div>{input.bookedseat.length}</div>
+            <div>{input.avaiableSeat}</div>
+            <div>{input.bookedseat}</div>
             <div>{input.inAC}</div>
             <div>{input.arrival}</div>
             <div>{input.departure}</div>

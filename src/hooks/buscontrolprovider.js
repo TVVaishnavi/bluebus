@@ -14,6 +14,7 @@ export default function BusProvider({ children }) {
   const [searchresult, setsearchresult] = useState([])
   const [ticket, setTicket]=useState([])
   const [newbus,setnewbus]=useState({})
+  const [editbus,seteditbus]=useState({})
   const [bus, setBus]=useState('');
 
 const signup = async (user) => {
@@ -149,13 +150,12 @@ const BookTicket=async(data)=>{
     if (token === null) {
       alert("undefined")
     } else {
-      const response = await api.post('/api/busdetails', data, {
+      const response = await api.post('/auth/user/bus/book-ticket', data, {
         headers: {
           Authorization: `Bearer  ${token}`
         }
       })
     }
-
   } catch (err) {
     console.log(err)
   }
@@ -209,26 +209,81 @@ const logout=()=>{
     console.log(err)
   }
 }
+
+const deletebus=(id)=>{
+  try {
+    const response=api.delete(`/admin/bus/delete/${id}`)
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+
 const getBus=async()=>{
   try {
     const token=localStorage.getItem('usertoken')
-    const response= await api.get('/admin/view/bus-details',{
+    const response= await api.get('/auth/admin/view/bus-details',{
       headers: {
         Authorization: `Bearer  ${token}`
       }
     })
     setBus(response.data)
+    console.log(response.data)
   } catch (err) {
     if(err.response){
       console.log(err.response.message)
     }
   }
 }
+
+const Editbus=async(data)=>{
+  try {
+    const token = localStorage.getItem('usertoken')
+    if (token === null) {
+      alert("undefined")
+    } else {
+      const response = await api.put('/auth/admin/bus/update-bus', data, {
+        headers: {
+          Authorization: `Bearer  ${token}`
+        }
+      })
+      console.log(response.data)
+      getBus()
+      Navigate('/dashboard/bus')
+    }
+
+  } catch (err) {
+    console.log(err)
+    alert("Not found")
+  }
+}
+
+const Cancleticket=async(data)=>{
+  try {
+    const token = localStorage.getItem('usertoken')
+    if (token === null) {
+      alert("undefined")
+    } else {
+      const response = await api.post('/auth/user/bus/cancel/ticket', data, {
+        headers: {
+          Authorization: `Bearer  ${token}`
+        }
+      })
+      console.log(response.data)
+      getTickets()
+      Navigate('/ticket')
+    }
+
+  } catch (err) {
+    console.log(err)
+    alert("Not found")
+  }
+}
 useEffect(() => {
   finduser()
 }, [])
 return (
-  <BusList.Provider value={{ signup, login, userDetail, userLogin, BusSearch, searchresult, handlebuslist,getuser,userList,logout,getTickets,ticket,bus, getBus,setnewbus,newbus,CreateBus}}>
+  <BusList.Provider value={{ signup, login, userDetail, userLogin, BusSearch, searchresult, handlebuslist,getuser,userList,logout,getTickets,ticket,bus, getBus,setnewbus,newbus,CreateBus,deletebus,editbus,seteditbus,Editbus,Cancleticket}}>
     {children}
   </BusList.Provider>
 )
