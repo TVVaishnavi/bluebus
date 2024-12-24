@@ -1,0 +1,32 @@
+.home{
+    display: flex;
+    height: 90vh;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}   
+
+.container{
+    width: 50%;
+    height: 90%;
+    margin: 5%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    font-family:'Dancing Script", cursive';
+
+}
+
+.titlename{
+    color:#21a0e9;
+    font-size: 80px;
+    font-family:"Dancing Script", cursive;
+}
+
+/* mobile screen*/
+@media screen and (max-width:450px) {
+    .home{
+        flex-direction: column;
+    }
+}

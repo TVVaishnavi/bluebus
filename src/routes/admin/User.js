@@ -1,18 +1,29 @@
 import React from 'react'
 import { UseBusList } from '../../hooks/buscontrolprovider'
+import '../../style/user.css'
 
 function User() {
-  const {userList}=UseBusList()
+  const { userList } = UseBusList()
   return (
-    <div>
-      {userList.length? userList.map((input, index)=>{
-        return(
-          <div key={index}>
-          <div>{input.name}</div>
-          <div>{input.email}</div>
-       </div>
-        )
-      }):<p>not found</p>}
+    <div className='user'>
+      <table className='table'>
+        <tr className='tableheader'>
+          <th>Name</th>
+          <th>Email</th>
+        </tr>
+        {userList.length ? userList.map((input, index) => {
+          return (
+            <tr key={index}>
+              <td>{input.name}</td>
+              <td>{input.email}</td>
+            </tr>
+          )
+        }):<tr>
+          <td>not found</td>
+          <td>not found</td>
+          </tr>}
+      </table>
+
     </div>
   )
 }

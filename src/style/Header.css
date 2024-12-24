@@ -1,0 +1,107 @@
+.header{
+    background-color: #21a0e9 ;
+    width: 100%;
+    height: 90px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+
+}
+
+.logo{
+    width: 80px;
+    height: 80px;
+    align-self: center;
+
+}
+
+.headername h1{
+    font-family:  "Playwrite HR Lijeva", cursive;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.headername{
+    flex: 50%;
+    padding: 2%;
+    margin: 2%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+.headerleftside{
+    flex: 50%;
+    display: flex;
+    margin-right: 2%;
+    justify-content: flex-end;
+
+}
+
+.headerleftside div{
+    cursor: pointer;
+    padding: 2px;
+    margin: 6px;
+    max-width: 80px;
+    padding: 2px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    height: 25px;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    font-weight: 600;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.headerleftside div:hover{
+    background-color:white;
+}
+
+.account{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 50%;
+}
+
+.account:hover{
+    background-color: #ffff;
+}
+
+
+
+.option{
+    position: absolute;
+    top: 90px;
+    right: 10px;
+    height: 150px;
+    width: 100px;
+    border: 1px solid ;
+   border-bottom-right-radius: 15px;
+   border-bottom-left-radius: 15px;
+    background-color: #21a0e9;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.option div{
+    width: 80%;
+    height: 30%;
+    margin: 3px;
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent;
+    border-radius: 12px;
+}
+
+.option div:hover{
+    background-color: #ffff;
+}

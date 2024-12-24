@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import '../styles/login.css'
 import { useNavigate } from 'react-router-dom';
-import { UseBusList } from '../hooks/buscontrolprovider'
+import { UseBusList } from '../hooks/buscontrolprovider';
+import '../style/Login.css';
 
 
 function Login() {
@@ -24,6 +24,7 @@ function Login() {
 
 
   return (
+    <div className='loginbody'>
     <div className='loginbox'>
       <div className='login'>
         <h2>Login</h2>
@@ -38,11 +39,11 @@ function Login() {
           <input type='password' required={true} placeholder='Enter New password' value={password} onChange={(e)=>setpassword(e.target.value)}/>
         </div>
         <div className='submitbutton'>
-          <button onClick={()=>loginProcess(useremail, password)}>Submit</button>
+          <button className='submit'onClick={()=>loginProcess(useremail, password)}>Submit</button>
           <p onClick={()=>Navigate('/signup')}>Create account </p>
         </div>
       </div>
-
+    </div>
     </div>
   )
 } 

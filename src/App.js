@@ -9,10 +9,8 @@ function App() {
   return (<BrowserRouter>
     <BusProvider>
     <div className="App">
-      
         <Header />
         <Body />
-     
     </div>
     </BusProvider> 
     </BrowserRouter>

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import '../styles/signup.css'
-import { UseBusList } from '../hooks/buscontrolprovider'
+import React, { useEffect, useState } from 'react';
+import { UseBusList } from '../hooks/buscontrolprovider';
 import { useNavigate } from 'react-router-dom';
+import '../style/Signup.css';
 
 function Signup() {
     const [username, setusername] = useState('');
@@ -39,6 +39,7 @@ function Signup() {
         }
     }
     return (
+        <div className='signupbody'>  
         <div className='signupbox'>
             <div className='signup'>
                 <h2>Signup</h2>
@@ -67,6 +68,7 @@ function Signup() {
                     <p onClick={()=>Navigate('/login')}>Already has account?</p>
                 </div>
             </div>
+        </div>
         </div>
     )
 }

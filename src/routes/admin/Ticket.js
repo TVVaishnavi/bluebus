@@ -3,24 +3,36 @@ import { UseBusList } from '../../hooks/buscontrolprovider'
 
 function Ticket() {
   const {ticket}=UseBusList()
+  console.log(ticket)
   return (
-    <div>
+    <div className='adTicket'>
+      <table className='adtable'>
+        <tr>
+        <th>BusName</th>
+        <th>BusNumber</th>
+        <th>seatCount</th>
+        <th>arrival</th>
+        <th>departure</th>
+        <th>bookingDate</th>
+        <th>travellerDetails</th>
+        <th>date</th>
+        </tr>
       {ticket.length? ticket.map((input, index)=>{
         return(
-          <div key={index}>
-            <div>{input.busNumber}</div>
-            <div>{input.seatCount}</div>
-            <div>{input.arrival}</div>
-            <div>{input.departure}</div>
-            <div>{input.bookingdate}</div>
-            <div>{input.travellerdetails}</div>
-            <div>{input.email}</div>
-
-
-          </div>
+          <tr key={index}>
+            <td>{input.busName}</td>
+            <td>{input.busNumber}</td>
+            <td>{input.seatNumber.length}</td>
+            <td>{input.arrival}</td>
+            <td>{input.departure}</td>
+            <td>{input.bookingDate}</td>
+            <td>{input.travellerDetails.length}</td>
+            <td>{input.date}</td>
+          </tr>
 
         )
-      }):<p>ticket is not found</p>}
+      }):<tr><th>ticket is not found</th></tr>}
+      </table>
     </div>
   )
 }

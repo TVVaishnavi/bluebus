@@ -1,105 +1,107 @@
-import React, {useState} from 'react'
-import { UseBusList } from '../hooks/buscontrolprovider'
-import { useParams } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import { UseBusList } from '../hooks/buscontrolprovider';
+import { useNavigate, useParams } from 'react-router-dom';
 import { IoMdSwap } from "react-icons/io";
+import '../style/Bookticket.css';
+import SeatLayout from '../layout/SeatLayout';
+
 
 function BookTicket() {
-    const [seatCount, setSeatCount]=useState(1)
-    const [row, setrow]=useState([{name:'',age:'',gender:''}])
-    const {handlebuslist}=UseBusList()
-   const {num}=useParams()
-   const detail=handlebuslist(num)
-    const addrow=()=>{
-        const newrow={name:'',age:'',gender:''}
-        setrow([...row,newrow])
-    }
+    const Navigate=useNavigate()
+    const { handlebuslist, BookTicket,row,setrow,selected} = UseBusList()
+    const { num } = useParams()
+    const detail = handlebuslist(num)
 
-    const romoverow=()=>{
-        const arr=row
-        arr.pop()
-        setrow(arr)
-    }
-    const handleFormChange = (index, event)=>{
-        let data=[...row]
+    const handleFormChange = (index, event) => {
+        let data = [...row]
         data[index][event.target.name] = event.target.value
         setrow(data)
     }
 
-    const handlebook=()=>{
-        const data={
-            busNumber:detail.busNumber,
-    seatcount:seatCount,
-    arrival:detail.arrival,
-    departure:detail.departure,
-    bookingdate:detail.data,
-    travellerdetails:row
+    const getemail = () => {
+        const data = JSON.parse(localStorage.getItem('userdetail'))
+        if(data==null){
+            Navigate('/login')
         }
+        else{
+            return data.email
+        }
+        
+    }
+
+    const handlebook = () => {
+        const email=getemail()
+        const data = {
+            busNumber: detail[0].busNumber,
+            busName:detail[0].busName,
+            seatNumbers: selected,
+            arrival: detail[0].arrival,
+            departure: detail[0].departure,
+            bookingDate: detail[0].date,
+            travellerDetails: row,
+            email:email
+        }
+        BookTicket(data)
+        console.log(data)
     }
 
 
-  return (
-    <div className='ticket'>
+    return (
+        <div className='bookticket'>
 
-        {detail?<><div className='busdetail'>
-            <div>
-            <h3>{detail?.arrival} <span> <IoMdSwap /> </span> {detail?.departure}</h3>
+            {detail.length ? <div className='ticketdetail'>
+                <div className='bookbusdetail'>
+                    <div>
+                        <h3>{detail[0]?.arrival} <span> <IoMdSwap /> </span> {detail[0]?.departure}</h3>
+                    </div>
+                    <div>
+                        <h3>{`${detail[0]?.arriveTime} - ${detail[0]?.departureTime}  ${detail[0].date}`}</h3>
+                    </div>
+                    <div>
+                        <h4><p>{`Avb:${detail[0]?.availableSeat?.length}`}</p></h4>
+                    </div>
+                    <div>
+                        <h3>{detail[0].stoppings}</h3>
+                    </div>
+                    <div>
+                        <h3><p>{detail[0].inAC ? "Ac" : "Non-Ac"}</p></h3>
+                    </div>
+                    <div>
+                        <h3>{detail[0].busNumber}</h3>
+                    </div>
+                </div>
+                <div className='seat'>
+                    <SeatLayout data={detail[0]}/>
+                </div>
+                <div className='form'>
+                    <table>
+                        <tr>
+                            <th>Name:</th>
+                            <th>age: </th>
+                            <th>Gender: </th>
+                        </tr>
+                        {row?.map((input, index) => {
+                            return (
+                                <tr key={index}>
+                                    <td>
+                                        <input name='name' placeholder='Name' value={input.name} onChange={(e) => handleFormChange(index, e)} />
+                                    </td>
+                                    <td>
+                                        <input name='age' placeholder='Age' value={input.age} onChange={(e) => handleFormChange(index, e)} />
+                                    </td>
+                                    <td>
+                                        <input name='gender' placeholder='Gender' value={input.gender} onChange={(e) => handleFormChange(index, e)} />
+                                    </td>
+                                </tr>
+                            )
+                        })}
+                    </table>
+                    <button className='submitticket' onClick={() => handlebook()}>BookTicket</button>
+                </div></div> : <p>ticket is loading</p>}
+
+
         </div>
-        <div>
-            <h3>{`${detail?.arivetime} - ${detail?.departuretime}  ${detail.date}`}</h3>
-        </div>
-        <div>
-            <h4><p>{`Avb:${detail?.avaiableSeat?.length}`}</p></h4>
-        </div>
-       <div>
-         <h3>{detail.stoppings}</h3>
-       </div>
-       <div>
-        <h3><p>{detail.inAC?"Ac":"Non-Ac"}</p></h3>
-       </div>
-       <div>
-        <h3>{detail.busNumber}</h3>
-       </div>
-        </div>
-        <div className='seat'>
-           <label seat="seatcount">seatCount:</label>
-           <div>
-            <button disabled={seatCount===1} onClick={()=>{
-                romoverow()
-                setSeatCount(seatCount-1)}}>-</button><spam>{`${seatCount}`}</spam>
-            <button disabled={seatCount>=40} onClick={()=>{
-                addrow()
-                setSeatCount(seatCount+1)}}>+</button>
-           </div>
-        </div> 
-        <div className='form'>
-            <table>
-                <tr>
-                    <th>Name:</th>
-                    <th>age: </th>
-                    <th>Gender: </th>
-                </tr>
-                {row?.map((input,index)=>{
-                return(
-                    <tr key={index}>
-                        <td>
-                            <input name='name' placeholder='Name' value={input.name} onChange={(e)=>handleFormChange(index, e)}/>
-                        </td>
-                        <td>
-                            <input name='age' placeholder='Age' value={input.age} onChange={(e)=>handleFormChange(index, e)}/>
-                        </td>
-                        <td>
-                            <input  name='gender' placeholder='Gender' value={input.gender} onChange={(e)=>handleFormChange(index, e)}/>
-                        </td>
-                    </tr>
-                )
-                })}
-            </table>
-            <button >BookTicket</button>
-        </div></>:<p>ticket is loading</p>}
-        
-      
-    </div>
-  )
+    )
 }
 
 export default BookTicket

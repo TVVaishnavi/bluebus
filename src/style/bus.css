@@ -1,0 +1,125 @@
+.bus{
+    padding: 5px;
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.busli{
+    width: 90%;
+}
+
+.row button{
+    align-self: flex-end;
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 700;
+    align-items: center;
+    width: 100px;
+    background-color: transparent;
+    margin-right: 20px;
+    margin: 2px;
+    border-radius: 12px;
+}
+
+
+
+.busheader{
+    padding: 5px;
+    width: 90%;
+    height: 60px;
+    display: flex;
+    position: relative;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1) ;
+    background-color: #21a0e9;
+    align-items: center;
+}
+.create {
+    justify-self:flex-end;
+    display: flex;
+    border: 1px solid transparent;
+    border-radius: 9px;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 35px;
+    font-size: 110%;
+    font-weight: bold;
+    background-color:transparent;
+
+}
+
+
+.create:hover{
+    background-color: #ffff;
+}
+
+.info{
+    padding: 15px;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1);
+
+}
+.row{
+    display: flex;
+    flex-direction: row;
+    align-self: flex-end;
+}
+
+.edit:hover{
+    background-color: #21a0e9;
+}
+
+.delete:hover{
+    background-color: #e20c0c;
+}
+
+.adsearch{
+    width: 90%;
+    height: 50%;
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 700;
+    background-color: transparent;
+}
+
+.adsearch label{
+    position: absolute;
+    left: -10000px;
+}
+
+
+.adsearch input{
+    margin: 5px;
+    border: 1px solid transparent;
+    border-radius: 15px;
+    height: 35px;
+    width: 200px;
+    font-size: 18px;
+    padding-left:5px;
+}
+
+.aSearch{
+    width: 40px;
+    height: 40px;
+    border: 1px solid transparent;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+}
+
+.aSearch:hover{
+    background-color: #ffff;
+}

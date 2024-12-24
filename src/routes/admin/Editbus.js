@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { UseBusList } from '../../hooks/buscontrolprovider'
 
 const Editbus = () => {
+    const [busName, setBusName]=useState('')
     const [busNumber,setbusNumber]=useState('')
     const [totalSeat,settotalSeat]=useState(Number)
     const [availableSeat,setavailableSeat]=useState([])
@@ -17,7 +18,7 @@ const Editbus = () => {
 
     const handleeditbus=()=>{
        const obj={
-        busNumber,totalSeat,availableSeat,inAC,arrival,departure,stoppings,arriveTime,departureTime,date
+        busName,busNumber,totalSeat,availableSeat,inAC,arrival,departure,stoppings,arriveTime,departureTime,date
        } 
        //console.log(obj)             
        Editbus(obj)
@@ -31,6 +32,7 @@ const Editbus = () => {
     }
 
     useEffect(()=>{
+        setBusName(editbus.busName)
         setbusNumber(editbus.busNumber)
         settotalSeat(editbus.totalSeat)
         setavailableSeat(editbus.availableSeat)
@@ -44,6 +46,10 @@ const Editbus = () => {
     },editbus)
   return (
     <div>
+        <div>
+            <label>busName:</label>
+            <input name='busName' type='text' placeholder='busName' value={busName} onChange={(e)=>setBusName(e.target.value)}></input>
+        </div>
       <div>
             <label>busNumber:</label>
             <input name='busNumber' type='text' placeholder='busNumber' value={busNumber} onChange={(e)=>setbusNumber(e.target.value)}></input>
