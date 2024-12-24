@@ -23,7 +23,7 @@ function Createbus() {
 
     const handlecreatebus = () => {
         const obj = {
-            busName, busNumber, totalSeat:totalSeat, availableSeat:availableSeat,busType:bustype, inAC, arrival, departure, stoppings, arriveTime, departureTime, date
+            busName, busNumber, totalSeat:totalSeat, availableSeat:availableSeat,Bustype:bustype, inAC, arrival, departure, stoppings, arriveTime, departureTime, date
         }
         //console.log(obj)
         CreateBus(obj)

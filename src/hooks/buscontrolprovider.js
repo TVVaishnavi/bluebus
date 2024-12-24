@@ -7,8 +7,8 @@ const BusList = createContext()
 
 
 export default function BusProvider({ children }) {
-  let [userDetail, setuserDetail] = useState({})
-  let [userLogin, setuserLogin] = useState(false)
+  const [userDetail, setuserDetail] = useState({})
+  const [userLogin, setuserLogin] = useState(false)
   const Navigate = useNavigate()
   const [userList, setuserList] = useState([])
   const [searchresult, setsearchresult] = useState([])
@@ -90,6 +90,7 @@ export default function BusProvider({ children }) {
           }
         })
         alert('created bus')
+        Navigate('/adminhome/bus')
       }
     } catch (err) {
       console.log(err)
@@ -178,6 +179,7 @@ export default function BusProvider({ children }) {
            Navigate('/ticket')
         }
         else{
+          console.log(response)
           alert('ticket is not book')
           Navigate(-1)
         }

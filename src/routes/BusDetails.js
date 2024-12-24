@@ -51,6 +51,7 @@ function BusDetails() {
         <h3>{detail[0].busNumber}</h3>
        </div>
        <div>
+        <button className='book' onClick={()=>Navigate(-1)}>Back</button>
         <button  className='book'onClick={()=>Navigate(`/bookticket/${detail[0]._id}`)}>BookTicket</button>
         </div></div>:<p>page is error</p>}
     </div>

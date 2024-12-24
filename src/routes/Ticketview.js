@@ -26,6 +26,7 @@ function Ticketview() {
             <div>Traveller: {input.travellerDetails.length}</div>
             <div>Date: {input.date}</div>
             <div>Email: {input.email}</div>
+            <button className='cancle' onClick={()=>Navigate(-1)}>Back</button>
             <button className='cancel' onClick={()=>handlecancle(input)}>Cancel</button>
           </div>
         )

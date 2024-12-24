@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import '../style/Seats.css'
-import { UseBusList } from '../hooks/buscontrolprovider'
+import { UseBusList } from '../hooks/buscontrolprovider';
 
-const Seatgenetater = (data,key,type) => {
+const Seatgenetater = (data,key,type,Booked) => {
 const {selected,setselected,addrow,romoverow}=UseBusList()
 
 const handleonclick=(seat)=>{
@@ -24,25 +24,25 @@ const changecolor=(data,seat)=>{
 
 const slp=(seat,key,dis)=>{
    return(
-    <div className='sleeperseat' style={{backgroundColor:changecolor(selected,key+seat)?'#21a0e9':'#ffff',cursor:dis?' ':'pointer'}} onClick={()=>changecolor(selected,key+seat)?handlechangeclick(key+seat):handleonclick(key+seat)}>{key+seat}</div>
+    <div className='sleeperseat' style={{backgroundColor:changecolor(selected,key+seat)?'#21a0e9':changecolor(Booked,key+seat)?'red':'#ffff',cursor:dis?' ':'pointer'}} onClick={()=>changecolor(Booked,key+seat)? 0 :changecolor(selected,key+seat)?handlechangeclick(key+seat):handleonclick(key+seat)}>{key+seat}</div>
    )
 }
 
 const sideslp=(seat,key,dis)=>{
     return(
-        <div className='sleeperseatside' style={{backgroundColor:changecolor(selected,key+seat)?'#21a0e9':'#ffff',cursor:dis?' ':'pointer'}} onClick={()=>changecolor(selected,key+seat)?handlechangeclick(key+seat):handleonclick(key+seat)}>{key+seat}</div>
+        <div className='sleeperseatside' style={{backgroundColor:changecolor(selected,key+seat)?'#21a0e9':changecolor(Booked,key+seat)?'red':'#ffff',cursor:dis?' ':'pointer'}} onClick={()=>changecolor(Booked,key+seat)? 0 :changecolor(selected,key+seat)?handlechangeclick(key+seat):handleonclick(key+seat)}>{key+seat}</div>
     )
 }
 
 const Rigset=(seat,key,dis)=>{
    return(
-    <div className='rigset' style={{backgroundColor:changecolor(selected,key+seat)?'#21a0e9':'#ffff',cursor:dis?' ':'pointer'}}  onClick={()=>changecolor(selected,key+seat)?handlechangeclick(key+seat):handleonclick(key+seat)} >{key+seat}</div>
+    <div className='rigset' style={{backgroundColor:changecolor(selected,key+seat)?'#21a0e9':changecolor(Booked,key+seat)?'red':'#ffff',cursor:dis?' ':'pointer'}}  onClick={()=>changecolor(Booked,key+seat)? 0 :changecolor(selected,key+seat)?handlechangeclick(key+seat):handleonclick(key+seat)} >{key+seat}</div>
    )
 }
 
 const Lefset=(seat,key,dis)=>{
     return(
-        <div className='lefset' style={{backgroundColor:changecolor(selected,key+seat)?'#21a0e9':'#ffff',cursor:dis?' ':'pointer'}} onClick={()=>changecolor(selected,key+seat)?handlechangeclick(key+seat):handleonclick(key+seat)}>{key+seat}</div>
+        <div className='lefset' style={{backgroundColor:changecolor(selected,key+seat)?'#21a0e9':changecolor(Booked,key+seat)?'red':'#ffff',cursor:dis?' ':'pointer'}} onClick={()=>changecolor(Booked,key+seat)? 0 :changecolor(selected,key+seat)?handlechangeclick(key+seat):handleonclick(key+seat)}>{key+seat}</div>
     )
 }
   return (
@@ -82,25 +82,25 @@ const changecolor=(data,seat)=>{
 
   const slp=(seat,key,dis)=>{
     return(
-     <div className='sleeperseat' style={{backgroundColor:changecolor(selected,key+seat)?'#21a0e9':'#ffff',cursor:dis?' ':'pointer',fontSize:'10px'}} onClick={()=>changecolor(selected,key+seat)?handlechangeclick(key+seat):handleonclick(key+seat)}>{key+seat}</div>
+     <div className='sleeperseat' style={{fontSize:'10px'}}>{key+seat}</div>
     )
  }
  
  const sideslp=(seat,key,dis)=>{
      return(
-         <div className='sleeperseatside' style={{backgroundColor:changecolor(selected,key+seat)?'#21a0e9':'#ffff',cursor:dis?' ':'pointer',fontSize:'10px'}} onClick={()=>changecolor(selected,key+seat)?handlechangeclick(key+seat):handleonclick(key+seat)}>{key+seat}</div>
+         <div className='sleeperseatside' style={{fontSize:'10px'}}>{key+seat}</div>
      )
  }
  
  const Rigset=(seat,key,dis)=>{
     return(
-     <div className='rigset' style={{backgroundColor:changecolor(selected,key+seat)?'#21a0e9':'#ffff',cursor:dis?' ':'pointer',fontSize:'10px'}}  onClick={()=>changecolor(selected,key+seat)?handlechangeclick(key+seat):handleonclick(key+seat)} >{key+seat}</div>
+     <div className='rigset' style={{fontSize:'10px'}}  >{key+seat}</div>
     )
  }
  
  const Lefset=(seat,key,dis)=>{
      return(
-         <div className='lefset' style={{backgroundColor:changecolor(selected,key+seat)?'#21a0e9':'#ffff',cursor:dis?' ':'pointer',fontSize:'10px'}} onClick={()=>changecolor(selected,key+seat)?handlechangeclick(key+seat):handleonclick(key+seat)}>{key+seat}</div>
+         <div className='lefset' style={{fontSize:'10px'}}>{key+seat}</div>
      )
  }
   return(

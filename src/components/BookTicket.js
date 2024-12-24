@@ -42,6 +42,7 @@ function BookTicket() {
             email:email
         }
         BookTicket(data)
+        setrow([])
         console.log(data)
     }
 
@@ -71,7 +72,7 @@ function BookTicket() {
                     </div>
                 </div>
                 <div className='seat'>
-                    <SeatLayout data={detail[0]}/>
+                    <SeatLayout data={detail[0]} />
                 </div>
                 <div className='form'>
                     <table>
